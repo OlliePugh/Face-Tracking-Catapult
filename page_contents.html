@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Just a test</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  </head>
+  <body>
+    <script>
+
+    $(function(){ /* DOM ready */
+
+      $("#center-button").click(function() {
+        let xhr = new XMLHttpRequest()
+        xhr.open("POST", "data_send.html", true);
+        xhr.send(`set-pos 100`);  // center the catapult
+      })
+
+      $("#fire-button").click(function() {
+        let xhr = new XMLHttpRequest()
+        xhr.open("POST", "data_send.html", true);
+        xhr.send(`fire true`);  // put the servo in the firing position the catapult
+      })
+
+      $("#x-damp").change(function() {
+        let xhr = new XMLHttpRequest()
+        xhr.open("POST", "data_send.html", true);
+        xhr.send(`x_damp ${$("#x-damp").val()}`);
+      })
+
+      $("#x-offset").change(function() {
+        let xhr = new XMLHttpRequest()
+        xhr.open("POST", "data_send.html", true);
+        xhr.send(`x-offset ${$("#x-offset").val()}`);
+      })
+
+      $("#set-pos").change(function() {
+        let xhr = new XMLHttpRequest()
+        xhr.open("POST", "data_send.html", true);
+        xhr.send(`set-pos ${$("#set-pos").val()}`);
+      })
+
+      $("#tracking").change(function() {
+        let xhr = new XMLHttpRequest()
+        xhr.open("POST", "data_send.html", true);
+        xhr.send(`tracking ${$("#tracking").prop("checked")}`);
+      })
+
+      $("#firing").change(function() {
+        let xhr = new XMLHttpRequest()
+        xhr.open("POST", "data_send.html", true);
+        xhr.send(`firing ${$("#firing").prop("checked")}`);
+      })
+    });
+
+    </script>
+    <center><h1>Just a test</h1></center>
+    <div>
+      <input type="button" id="center-button" value="Center">
+    </div>
+    <div>
+      <input type="button" id="fire-button" value="Fire">
+    </div>
+    <div>
+      <label for="tracking">Tracking Enabled</label>
+      <input type="checkbox" id="tracking" checked>
+    </div>
+    <div>
+      <label for="firing">Firing Enabled</label>
+      <input type="checkbox" id="firing">
+    </div>
+    <div class="slidecontainer">
+      <label for="set-pos">Set Position</label>
+      <input type="range" min="0" max="200" value="100" class="slider" id="set-pos">
+    </div>
+    <div class="slidecontainer">
+      <label for="x-damp">X Dampening</label>
+      <input type="range" min="0" max="100" value="100" class="slider" id="x-damp">
+    </div>
+    <div class="slidecontainer">
+      <label for="x-offset">X Offset</label>
+      <input type="range" min="0" max="200" value="100" class="slider" id="x-offset">
+    </div>
+    <center><img src="stream.mjpg" width="30%" ondragstart="return false;"></center>
+  </body>
+</html>
